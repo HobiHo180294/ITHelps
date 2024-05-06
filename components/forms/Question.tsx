@@ -157,6 +157,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								<Editor
 									apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
 									onInit={(evt, editor) => {
+										// @ts-ignore
 										editorRef.current = editor;
 									}}
 									onBlur={field.onBlur}
