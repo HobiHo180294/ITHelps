@@ -96,7 +96,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 				if (tagValue.length > 15) {
 					return form.setError('tags', {
 						type: 'required',
-						message: 'Tag must be less than 15 characters.',
+						message: 'Максимальна довжина тегу - 15 символів.',
 					});
 				}
 
@@ -129,7 +129,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 					render={({ field }) => (
 						<FormItem className="flex w-full flex-col">
 							<FormLabel className="paragraph-semibold text-dark400_light800">
-								Question Title <span className="text-primary-500">*</span>
+								Тема <span className="text-primary-500">*</span>
 							</FormLabel>
 							<FormControl className="mt-3.5">
 								<Input
@@ -138,8 +138,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								/>
 							</FormControl>
 							<FormDescription className="body-regular mt-2.5 text-light-500">
-								Be specific and imagine you&apos;re asking a question to another
-								person.
+								Будь конкретним й уяви, що запитуєш іншу людину.
 							</FormDescription>
 							<FormMessage className="text-red-500" />
 						</FormItem>
@@ -151,7 +150,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 					render={({ field }) => (
 						<FormItem className="flex w-full flex-col gap-3">
 							<FormLabel className="paragraph-semibold text-dark400_light800">
-								Detailed explanation of your problem{' '}
+								Детальний опис твоєї проблеми{' '}
 								<span className="text-primary-500">*</span>
 							</FormLabel>
 							<FormControl className="mt-3.5">
@@ -195,8 +194,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								/>
 							</FormControl>
 							<FormDescription className="body-regular mt-2.5 text-light-500">
-								Introduce the problem and expand on what you put in the title.
-								Minimum 20 characters.
+								Опиши проблему та розшир інформацію, зазначену в заголовку.
+								Мінімум 20 символів.
 							</FormDescription>
 							<FormMessage className="text-red-500" />
 						</FormItem>
@@ -208,14 +207,14 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 					render={({ field }) => (
 						<FormItem className="flex w-full flex-col">
 							<FormLabel className="paragraph-semibold text-dark400_light800">
-								Tags <span className="text-primary-500">*</span>
+								Теги <span className="text-primary-500">*</span>
 							</FormLabel>
 							<FormControl className="mt-3.5">
 								<>
 									<Input
 										disabled={type === 'Edit'}
 										className="no-focus paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
-										placeholder="Add tags..."
+										placeholder="Додай теги..."
 										onKeyDown={e => handleInputKeyDown(e, field)}
 									/>
 
@@ -235,7 +234,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 													{type !== 'Edit' && (
 														<Image
 															src="/assets/icons/close.svg"
-															alt="Close icon"
+															alt="Іконка закриття"
 															width={12}
 															height={12}
 															className="cursor-pointer object-contain invert-0 dark:invert"
@@ -248,8 +247,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								</>
 							</FormControl>
 							<FormDescription className="body-regular mt-2.5 text-light-500">
-								Add up to 3 tags to describe what your question is about. You
-								need to press enter to add a tag.
+								Додай до 3 тегів, щоб описати запитання. Натисни Enter, щоб
+								додати тег.
 							</FormDescription>
 							<FormMessage className="text-red-500" />
 						</FormItem>
@@ -261,9 +260,9 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 					disabled={isSubmitting}
 				>
 					{isSubmitting ? (
-						<>{type === 'Edit' ? 'Editing...' : 'Posting...'}</>
+						<>{type === 'Edit' ? 'Редагування...' : 'Публікація...'}</>
 					) : (
-						<>{type === 'Edit' ? 'Edit Question' : 'Ask a Question'}</>
+						<>{type === 'Edit' ? 'Відредагуй' : 'Запитай'}</>
 					)}
 				</Button>
 			</form>
