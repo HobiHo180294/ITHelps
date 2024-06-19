@@ -10,7 +10,7 @@ import { auth } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Колекції | ITHelps',
+	title: 'Колекція | ITHelps',
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {

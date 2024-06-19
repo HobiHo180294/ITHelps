@@ -45,9 +45,7 @@ const Votes = ({
 		});
 
 		return toast({
-			title: `Питання ${
-				!hasSaved ? 'Збережено до' : 'Видалено з'
-			} твоєї колекції`,
+			title: `Питання ${!hasSaved ? 'Збережено до' : 'Видалено з'} колекції`,
 			variant: !hasSaved ? 'default' : 'destructive',
 		});
 	};
