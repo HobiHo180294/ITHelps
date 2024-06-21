@@ -5,7 +5,7 @@ import {
 } from '@/constants';
 import { JobPageFilters } from '@/constants/filters';
 import { FilterProps, MedalParameter, MedalQuantity, Nullable } from '@/types';
-import { ClassSpecifier, clsx } from 'clsx';
+import { ClassArray, clsx } from 'clsx';
 import qs, { ParsedQuery } from 'query-string';
 import { twMerge } from 'tailwind-merge';
 import type { GetFormattedSalaryParams } from './actions/shared.types';
@@ -32,7 +32,7 @@ const DIVISIONS: Division[] = [
 	{ divisor: 1, suffix: '' },
 ];
 
-export const mergeClassNames = (...classNames: ClassSpecifier[]): string =>
+export const mergeClassNames = (...classNames: ClassArray): string =>
 	twMerge(clsx(classNames));
 
 export const defineTimeUnitCountableForm = (
@@ -42,9 +42,9 @@ export const defineTimeUnitCountableForm = (
 	timeUnit % 10 === 1 && timeUnit % 100 !== 11
 		? one
 		: [2, 3, 4].includes(timeUnit % 10) &&
-		  ![12, 13, 14].includes(timeUnit % 100)
-		? few
-		: many;
+			  ![12, 13, 14].includes(timeUnit % 100)
+			? few
+			: many;
 
 export const getRelativeTime = (createdAt: Date): string => {
 	const currentTimeMoment = new Date();

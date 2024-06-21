@@ -1,4 +1,8 @@
 {
+	"globals": {
+		"React": "readonly"
+	},
+
 	"extends": [
 		"next/core-web-vitals",
 		"standard",

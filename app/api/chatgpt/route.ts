@@ -27,10 +27,13 @@ export const POST = async (request: Request) => {
 		});
 
 		const responseData = await response.json();
+
 		const reply = responseData.choices[0].message.content;
 
 		return NextResponse.json({ reply });
 	} catch (error: any) {
+		console.log('error:', error);
+
 		return NextResponse.json({ error: error.message });
 	}
 };

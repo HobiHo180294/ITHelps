@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import GlobalSearch from '../search/GlobalSearch';
 import MobileNav from './MobileNav';
-import Theme from './Theme';
+import Theme from './Theme/Theme';
 
 const Navbar = () => {
 	return (

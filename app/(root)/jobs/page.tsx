@@ -3,7 +3,7 @@ import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 
 import JobCard from '@/components/cards/JobCard';
 import JobFilters from '@/components/shared/Filters';
-import NoResult from '@/components/shared/NoResult';
+import NoResult from '@/components/shared/NoResult/NoResult';
 import Pagination from '@/components/shared/Pagination';
 
 import { getCountryFilters, getJobs } from '@/lib/actions/job.action';

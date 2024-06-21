@@ -1,7 +1,7 @@
 import QuestionCard from '@/components/cards/QuestionCard';
 import HomeFilters from '@/components/Home/HomeFilters';
 import Filter from '@/components/shared/Filter';
-import NoResult from '@/components/shared/NoResult';
+import NoResult from '@/components/shared/NoResult/NoResult';
 import Pagination from '@/components/shared/Pagination';
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import { Button } from '@/components/ui/button';

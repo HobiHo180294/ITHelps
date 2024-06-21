@@ -22,7 +22,7 @@ const Theme = () => {
 					{mode === 'light' ? (
 						<Image
 							src="/assets/icons/sun.svg"
-							alt="сонце"
+							alt="іконка світлої теми"
 							width={20}
 							height={20}
 							className="active-theme"
@@ -30,7 +30,7 @@ const Theme = () => {
 					) : (
 						<Image
 							src="/assets/icons/moon.svg"
-							alt="місяць"
+							alt="іконка темної теми"
 							width={20}
 							height={20}
 							className="active-theme"

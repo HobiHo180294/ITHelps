@@ -1,4 +1,10 @@
+import { ReactNode } from 'react';
+
 export type Dynamic<Key extends PropertyKey, Value> = Record<Key, Value>;
+
+export interface Children {
+	children: ReactNode;
+}
 
 export interface SidebarLink {
 	imgURL: string;
