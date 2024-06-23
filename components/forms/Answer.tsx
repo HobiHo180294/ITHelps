@@ -81,9 +81,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 			const aiAnswer = await response.json();
 
 			// Convert plain text to HTML format
-
 			const formattedAnswer = aiAnswer.reply.replace(/\n/g, '<br />');
-			console.log('AI Answer' + formattedAnswer);
 
 			if (editorRef.current) {
 				const editor = editorRef.current as any;
@@ -102,25 +100,25 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 		<div>
 			<div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
 				<h4 className="paragraph-semibold text-dark400_light800">
-					Write your answer here
+					Поділись своєю відповіддю тут
 				</h4>
 
 				<Button
 					className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
-					onClick={generateAIAnswer}
+					onClick={() => generateAIAnswer()}
 				>
 					{isSubmittingAI ? (
-						<>Generating...</>
+						<>Генерується...</>
 					) : (
 						<>
 							<Image
 								src="/assets/icons/stars.svg"
-								alt="star"
+								alt="зірка"
 								width={12}
 								height={12}
 								className="object-contain"
 							/>
-							Generate AI Answer
+							Створи відповідь за допомогою ШІ
 						</>
 					)}
 				</Button>
@@ -187,7 +185,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 							className="primary-gradient w-fit text-white"
 							disabled={isSubmitting}
 						>
-							{isSubmitting ? 'Submitting...' : 'Submit'}
+							{isSubmitting ? 'Надсилається...' : 'Надіслати'}
 						</Button>
 					</div>
 				</form>
