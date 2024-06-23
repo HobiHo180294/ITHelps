@@ -140,7 +140,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 							<FormDescription className="body-regular mt-2.5 text-light-500">
 								Будь конкретним і лаконічним.
 							</FormDescription>
-							<FormMessage className="text-red-500" />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -197,7 +197,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								Опиши проблему та розшир інформацію, зазначену в заголовку.
 								Мінімум 20 символів.
 							</FormDescription>
-							<FormMessage className="text-red-500" />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -250,7 +250,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								Додай до 3 тегів, щоб описати запитання. Натисни Enter для
 								призначення тегу.
 							</FormDescription>
-							<FormMessage className="text-red-500" />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
