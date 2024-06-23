@@ -7,20 +7,27 @@ import Tag from '@/database/tag.model';
 import User from '@/database/user.model';
 import { FilterQuery } from 'mongoose';
 import { revalidatePath } from 'next/cache';
-import { connectToDatabase } from '../mongoose';
+import { establishDBConnection } from '../mongoose';
 import {
-	CreateQuestionParams,
 	DeleteQuestionParams,
 	EditQuestionParams,
 	GetQuestionByIdParams,
 	GetQuestionsParams,
+	InquiryParameters,
 	QuestionVoteParams,
 	RecommendedParams,
 } from './shared.types';
 
+const getExistingTag = async (tag: string, question: any) =>
+	await Tag.findOneAndUpdate(
+		{ name: { $regex: new RegExp(`^${tag}$`, 'i') } },
+		{ $setOnInsert: { name: tag }, $push: { questions: question._id } },
+		{ upsert: true, new: true }
+	);
+
 export async function getQuestions(params: GetQuestionsParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 
@@ -70,56 +77,50 @@ export async function getQuestions(params: GetQuestionsParams) {
 	}
 }
 
-export async function createQuestion(params: CreateQuestionParams) {
+export async function inquire(params: InquiryParameters) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
+		const { subject, body, tags, creator, route } = params;
 
-		const { title, content, tags, author, path } = params;
-
-		// Create the question
-		const question = await Question.create({
-			title,
-			content,
-			author,
+		// Створення запитання
+		const raisedIssue = await Question.create({
+			title: subject,
+			content: body,
+			author: creator,
 		});
 
-		const tagDocuments = [];
+		const tagsCollection: string[] = [];
 
-		// Create the tags or get them if they already exist
+		// Створення тегів або їх отримання, якщо вони наявні у БД
 		for (const tag of tags) {
-			const existingTag = await Tag.findOneAndUpdate(
-				{ name: { $regex: new RegExp(`^${tag}$`, 'i') } },
-				{ $setOnInsert: { name: tag }, $push: { questions: question._id } },
-				{ upsert: true, new: true }
-			);
-
-			tagDocuments.push(existingTag._id);
+			const retrievedTag = await getExistingTag(tag, raisedIssue);
+			tagsCollection.push(retrievedTag._id);
 		}
 
-		await Question.findByIdAndUpdate(question._id, {
-			$push: { tags: { $each: tagDocuments } },
+		await Question.findByIdAndUpdate(raisedIssue._id, {
+			$push: { tags: { $each: tagsCollection } },
 		});
 
-		// Create an interaction record for the user's ask_question action
+		// Зафіксувати дію користувача "ask_question"
 		await Interaction.create({
-			user: author,
+			user: creator,
 			action: 'ask_question',
-			question: question._id,
-			tags: tagDocuments,
+			question: raisedIssue._id,
+			tags: tagsCollection,
 		});
 
-		// Increment author's reputation by +5 for creating a question
-		await User.findByIdAndUpdate(author, { $inc: { reputation: 5 } });
+		// Збільшити репутацію автора на 5 за активність на платформі
+		await User.findByIdAndUpdate(creator, { $inc: { reputation: 5 } });
 
-		revalidatePath(path);
+		revalidatePath(route);
 	} catch (error) {
-		console.log(error);
+		return error;
 	}
 }
 
 export async function getQuestionById(params: GetQuestionByIdParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { questionId } = params;
 
@@ -140,7 +141,7 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
 
 export async function upvoteQuestion(params: QuestionVoteParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { questionId, userId, hasupVoted, hasdownVoted, path } = params;
 
@@ -184,7 +185,7 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
 
 export async function downvoteQuestion(params: QuestionVoteParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { questionId, userId, hasupVoted, hasdownVoted, path } = params;
 
@@ -227,7 +228,7 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
 
 export async function deleteQuestion(params: DeleteQuestionParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { questionId, path } = params;
 
@@ -247,7 +248,7 @@ export async function deleteQuestion(params: DeleteQuestionParams) {
 
 export async function editQuestion(params: EditQuestionParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { questionId, title, content, path } = params;
 
@@ -270,7 +271,7 @@ export async function editQuestion(params: EditQuestionParams) {
 
 export async function getHotQuestions() {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const hotQuestions = await Question.find({})
 			.sort({ views: -1, upvotes: -1 })
@@ -285,7 +286,7 @@ export async function getHotQuestions() {
 
 export async function getRecommendedQuestions(params: RecommendedParams) {
 	try {
-		await connectToDatabase();
+		await establishDBConnection();
 
 		const { userId, page = 1, pageSize = 20, searchQuery } = params;
 

@@ -46,26 +46,26 @@ const Stats = ({ totalQuestions, totalAnswers, badges, reputation }: Props) => {
 						<p className="paragraph-semibold text-dark200_light900">
 							{formatNumberWithSuffix(totalAnswers)}
 						</p>
-						<p className="body-medium text-dark400_light700">Відповіді</p>
+						<p className="body-medium text-dark400_light700">Відповідей</p>
 					</div>
 				</div>
 
 				<StatsCard
 					imgUrl="/assets/icons/gold-medal.svg"
 					value={badges.GOLD}
-					title="Золоті Значки"
+					title="Золоті Медалі"
 				/>
 
 				<StatsCard
 					imgUrl="/assets/icons/silver-medal.svg"
 					value={badges.SILVER}
-					title="Срібні Значки"
+					title="Срібні Медалі"
 				/>
 
 				<StatsCard
 					imgUrl="/assets/icons/bronze-medal.svg"
 					value={badges.BRONZE}
-					title="Бронзові Значки"
+					title="Бронзові Медалі"
 				/>
 			</div>
 		</div>

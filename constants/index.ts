@@ -23,11 +23,6 @@ export const sidebarLinks: SidebarLink[] = [
 		label: 'Колекція',
 	},
 	{
-		imgURL: '/assets/icons/suitcase.svg',
-		route: '/jobs',
-		label: 'Робота',
-	},
-	{
 		imgURL: '/assets/icons/tag.svg',
 		route: '/tags',
 		label: 'Теги',

@@ -64,6 +64,7 @@ const Page = async ({ params, searchParams }: any) => {
 					imgUrl="/assets/icons/clock.svg"
 					alt="clock icon"
 					value={` запитав/ла ${getRelativeTime(result.createdAt)}`}
+					title=""
 					textStyles="small-medium text-dark400_light800"
 				/>
 				<Metric

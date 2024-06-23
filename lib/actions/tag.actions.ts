@@ -4,7 +4,7 @@ import Question from '@/database/question.model';
 import Tag, { ITag } from '@/database/tag.model';
 import User from '@/database/user.model';
 import { FilterQuery } from 'mongoose';
-import { connectToDatabase } from '../mongoose';
+import { establishDBConnection } from '../mongoose';
 import {
 	GetAllTagsParams,
 	GetQuestionsByTagIdParams,
@@ -13,7 +13,7 @@ import {
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { userId } = params;
 
@@ -36,7 +36,7 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 
 export async function getAllTags(params: GetAllTagsParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 		const skipAmount = (page - 1) * pageSize;
@@ -85,7 +85,7 @@ export async function getAllTags(params: GetAllTagsParams) {
 
 export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const { tagId, page = 1, pageSize = 10, searchQuery } = params;
 		const skipAmount = (page - 1) * pageSize;
@@ -126,7 +126,7 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
 
 export async function getTopPopularTags() {
 	try {
-		connectToDatabase();
+		establishDBConnection();
 
 		const popularTags = await Tag.aggregate([
 			{ $project: { name: 1, numberOfQuestions: { $size: '$questions' } } },

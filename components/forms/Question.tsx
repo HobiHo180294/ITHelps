@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useTheme } from '@/context/ThemeProvider';
-import { createQuestion, editQuestion } from '@/lib/actions/question.action';
+import { editQuestion, inquire } from '@/lib/actions/question.action';
 import { QuestionsSchema } from '@/lib/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Editor } from '@tinymce/tinymce-react';
@@ -66,12 +66,12 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 
 				router.push(`/question/${parsedQuestionDetails._id}`);
 			} else {
-				await createQuestion({
-					title: values.title,
-					content: values.explanation,
+				await inquire({
+					subject: values.title,
+					body: values.explanation,
 					tags: values.tags,
-					author: JSON.parse(mongoUserId),
-					path: pathname,
+					creator: JSON.parse(mongoUserId),
+					route: pathname,
 				});
 
 				router.push('/');
@@ -138,7 +138,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								/>
 							</FormControl>
 							<FormDescription className="body-regular mt-2.5 text-light-500">
-								Будь конкретним й уяви, що запитуєш іншу людину.
+								Будь конкретним і лаконічним.
 							</FormDescription>
 							<FormMessage className="text-red-500" />
 						</FormItem>
@@ -247,8 +247,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
 								</>
 							</FormControl>
 							<FormDescription className="body-regular mt-2.5 text-light-500">
-								Додай до 3 тегів, щоб описати запитання. Натисни Enter, щоб
-								додати тег.
+								Додай до 3 тегів, щоб описати запитання. Натисни Enter для
+								призначення тегу.
 							</FormDescription>
 							<FormMessage className="text-red-500" />
 						</FormItem>
