@@ -35,14 +35,16 @@ const Profile = ({ clerkId, user }: Props) => {
 		defaultValues: {
 			name: parsedUser.name || '',
 			username: parsedUser.username || '',
-			portfolioWebsite: parsedUser.portfolioWebsite || '',
-			location: parsedUser.location || '',
-			bio: parsedUser.bio || '',
+			portfolioWebsite: parsedUser.portfolioWebsite || undefined,
+			location: parsedUser.location || undefined,
+			bio: parsedUser.bio || undefined,
 		},
 	});
 
 	async function onSubmit(values: z.infer<typeof ProfileSchema>) {
 		setIsSubmitting(true);
+
+		console.log('hello');
 
 		try {
 			await updateUser({
@@ -50,9 +52,9 @@ const Profile = ({ clerkId, user }: Props) => {
 				updateData: {
 					name: values.name,
 					username: values.username,
-					portfolioWebsite: values.portfolioWebsite,
-					location: values.location,
-					bio: values.bio,
+					portfolioWebsite: values.portfolioWebsite || '',
+					location: values.location || '',
+					bio: values.bio || '',
 				},
 				path: pathname,
 			});
@@ -86,7 +88,7 @@ const Profile = ({ clerkId, user }: Props) => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -105,7 +107,7 @@ const Profile = ({ clerkId, user }: Props) => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -125,7 +127,7 @@ const Profile = ({ clerkId, user }: Props) => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -145,7 +147,7 @@ const Profile = ({ clerkId, user }: Props) => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>
@@ -156,7 +158,7 @@ const Profile = ({ clerkId, user }: Props) => {
 					render={({ field }) => (
 						<FormItem className="space-y-3.5">
 							<FormLabel className="paragraph-semibold text-dark400_light800">
-								Біографія <span className="text-primary-500">*</span>
+								Біографія
 							</FormLabel>
 							<FormControl>
 								<Textarea
@@ -165,7 +167,7 @@ const Profile = ({ clerkId, user }: Props) => {
 									{...field}
 								/>
 							</FormControl>
-							<FormMessage />
+							<FormMessage className="text-pink-600" />
 						</FormItem>
 					)}
 				/>

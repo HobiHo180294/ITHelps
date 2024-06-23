@@ -118,7 +118,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 								height={12}
 								className="object-contain"
 							/>
-							Створи відповідь за допомогою ШІ
+							Спробуй ШІ
 						</>
 					)}
 				</Button>
@@ -174,7 +174,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 										}}
 									/>
 								</FormControl>
-								<FormMessage className="text-red-500" />
+								<FormMessage className="text-pink-600" />
 							</FormItem>
 						)}
 					/>
