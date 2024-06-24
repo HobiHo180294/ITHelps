@@ -13,7 +13,7 @@ const GlobalResult = () => {
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [result, setResult] = useState([
-		{ type: 'question', id: 1, title: 'Next.js question' },
+		{ type: 'question', id: 1, title: 'Next.js запитання' },
 		{ type: 'tag', id: 1, title: 'Nextjs' },
 		{ type: 'user', id: 1, title: 'jsm' },
 	]);
@@ -97,7 +97,13 @@ const GlobalResult = () => {
 											{item.title}
 										</p>
 										<p className="text-light400_light500 small-medium mt-1 font-bold capitalize">
-											{item.type}
+											{item.type === 'question'
+												? 'Питання'
+												: item.type === 'tag'
+													? 'Тег'
+													: item.type === 'user'
+														? 'Користувач'
+														: 'Відповідь'}
 										</p>
 									</div>
 								</Link>
