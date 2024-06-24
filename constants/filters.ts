@@ -21,7 +21,7 @@ export const QuestionFilters = [
 
 export const TagFilters = [
 	{ name: 'Популярні', value: 'popular' },
-	{ name: 'Недавні', value: 'recent' },
+	{ name: 'Нещодавні', value: 'recent' },
 	{ name: `За Ім'ям`, value: 'name' },
 	{ name: 'За Давністю', value: 'old' },
 ];
