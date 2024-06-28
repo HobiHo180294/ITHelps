@@ -1,6 +1,5 @@
 'use client';
 
-// Імпортування необхідних модулів
 import {
 	Menubar,
 	MenubarContent,
@@ -15,14 +14,12 @@ import React from 'react';
 import { themeStyled } from './Theme.styles';
 
 const Theme = (): React.JSX.Element => {
-	// Отримання поточного режиму теми та функції для її зміни
 	const { mode, setMode } = useTheme();
 
 	return (
 		<Menubar className={themeStyled.menuBar}>
 			<MenubarMenu>
 				<MenubarTrigger className={themeStyled.menuBarTrigger}>
-					{/* Умова для світлої теми, інакше буде обрана темна */}
 					{mode === 'light' ? (
 						<Image
 							src="/assets/icons/sun.svg"
@@ -41,7 +38,6 @@ const Theme = (): React.JSX.Element => {
 						/>
 					)}
 				</MenubarTrigger>
-				{/* Вміст меню зі стилізацією */}
 				<MenubarContent className={themeStyled.menuBarContent}>
 					{themes.map(item => (
 						<MenubarItem
@@ -67,7 +63,6 @@ const Theme = (): React.JSX.Element => {
 										: themeStyled.darkValue
 								}`}
 							>
-								{/* Мітка для елементу теми */}
 								{item.label}
 							</p>
 						</MenubarItem>

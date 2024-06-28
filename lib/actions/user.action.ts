@@ -77,17 +77,8 @@ export async function deleteUser(params: DeleteUserParams) {
 			throw new Error('User not found');
 		}
 
-		// Delete user from database
-		// and questions, answers, comments, etc.
-
-		// get user question ids
-		// const userQuestionIds = await Question.find({ author: user._id}).distinct('_id');
-
-		// delete user questions
 		// @ts-ignore
 		await Question.deleteMany({ author: user._id });
-
-		// TODO: delete user answers, comments, etc.
 
 		// @ts-ignore
 		const deletedUser = await User.findByIdAndDelete(user._id);
@@ -162,14 +153,12 @@ export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
 		const isQuestionSaved = user.saved.includes(questionId);
 
 		if (isQuestionSaved) {
-			// remove question from saved
 			await User.findByIdAndUpdate(
 				userId,
 				{ $pull: { saved: questionId } },
 				{ new: true }
 			);
 		} else {
-			// add question to saved
 			await User.findByIdAndUpdate(
 				userId,
 				{ $addToSet: { saved: questionId } },

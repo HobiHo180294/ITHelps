@@ -31,7 +31,6 @@ export async function getQuestions(params: GetQuestionsParams) {
 
 		const { searchQuery, filter, page = 1, pageSize = 10 } = params;
 
-		// Calculcate the number of posts to skip based on the page number and page size
 		const skipAmount = (page - 1) * pageSize;
 
 		const query: FilterQuery<typeof Question> = {};
@@ -82,7 +81,6 @@ export async function inquire(params: InquiryParameters) {
 		establishDBConnection();
 		const { subject, body, tags, creator, route } = params;
 
-		// Створення запитання
 		const raisedIssue = await Question.create({
 			title: subject,
 			content: body,
@@ -91,7 +89,6 @@ export async function inquire(params: InquiryParameters) {
 
 		const tagsCollection: string[] = [];
 
-		// Створення тегів або їх отримання, якщо вони наявні у БД
 		for (const tag of tags) {
 			const retrievedTag = await getExistingTag(tag, raisedIssue);
 			tagsCollection.push(retrievedTag._id);
@@ -101,7 +98,6 @@ export async function inquire(params: InquiryParameters) {
 			$push: { tags: { $each: tagsCollection } },
 		});
 
-		// Зафіксувати дію користувача "ask_question"
 		await Interaction.create({
 			user: creator,
 			action: 'ask_question',
@@ -109,7 +105,6 @@ export async function inquire(params: InquiryParameters) {
 			tags: tagsCollection,
 		});
 
-		// Збільшити репутацію автора на 5 за активність на платформі
 		await User.findByIdAndUpdate(creator, { $inc: { reputation: 5 } });
 
 		revalidatePath(route);
@@ -166,12 +161,10 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
 			throw new Error('Question not found');
 		}
 
-		// Increment author's reputation by +1/-1 for upvoting/revoking an upvote to the question
 		await User.findByIdAndUpdate(userId, {
 			$inc: { reputation: hasupVoted ? -1 : 1 },
 		});
 
-		// Increment author's reputation by +10/-10 for recieving an upvote/downvote to the question
 		await User.findByIdAndUpdate(question.author, {
 			$inc: { reputation: hasupVoted ? -10 : 10 },
 		});
@@ -210,7 +203,6 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
 			throw new Error('Question not found');
 		}
 
-		// Increment author's reputation
 		await User.findByIdAndUpdate(userId, {
 			$inc: { reputation: hasdownVoted ? -2 : 2 },
 		});
@@ -290,7 +282,6 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
 
 		const { userId, page = 1, pageSize = 20, searchQuery } = params;
 
-		// find user
 		const user = await User.findOne({ clerkId: userId });
 
 		if (!user) {
@@ -299,12 +290,10 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
 
 		const skipAmount = (page - 1) * pageSize;
 
-		// Find the user's interactions
 		const userInteractions = await Interaction.find({ user: user._id })
 			.populate('tags')
 			.exec();
 
-		// Extract tags from user's interactions
 		const userTags = userInteractions.reduce((tags, interaction) => {
 			if (interaction.tags) {
 				tags = tags.concat(interaction.tags);
@@ -312,7 +301,6 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
 			return tags;
 		}, []);
 
-		// Get distinct tag IDs from user's interactions
 		const distinctUserTagIds = [
 			// @ts-ignore
 			...new Set(userTags.map((tag: any) => tag._id)),
@@ -320,8 +308,8 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
 
 		const query: FilterQuery<typeof Question> = {
 			$and: [
-				{ tags: { $in: distinctUserTagIds } }, // Questions with user's tags
-				{ author: { $ne: user._id } }, // Exclude user's own questions
+				{ tags: { $in: distinctUserTagIds } },
+				{ author: { $ne: user._id } },
 			],
 		};
 

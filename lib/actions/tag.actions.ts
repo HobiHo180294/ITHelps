@@ -21,9 +21,6 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
 
 		if (!user) throw new Error('User not found');
 
-		// Find interactions for the user and group by tags...
-		// Interaction...
-
 		return [
 			{ _id: '1', name: 'CSS' },
 			{ _id: '2', name: 'JavaScript' },

@@ -20,8 +20,8 @@ interface OptionalFilter {
 
 export interface CreateAnswerParams {
 	content: string;
-	author: string; // User ID
-	question: string; // Question ID
+	author: string;
+	question: string;
 	path: string;
 }
 
@@ -68,14 +68,6 @@ export interface GetQuestionsParams {
 	searchQuery?: string;
 	filter?: string;
 }
-
-// export interface InquiryParameters {
-// 	title: string;
-// 	content: string;
-// 	tags: string[];
-// 	author: Schema.Types.ObjectId | IUser;
-// 	path: string;
-// }
 
 export interface InquiryParameters {
 	subject: string;
@@ -144,7 +136,7 @@ export interface GetAllUsersParams {
 	page?: number;
 	pageSize?: number;
 	filter?: string;
-	searchQuery?: string; // Add searchQuery parameter
+	searchQuery?: string;
 }
 
 export interface UpdateUserParams {

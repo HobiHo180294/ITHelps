@@ -101,22 +101,17 @@ body {
 	background: #6960b1;
 }
 
-/* Markdown Start */
 .markdown a {
 	color: #8c66c3;
 }
 
 .markdown a,
 code {
-	/* These are technically the same, but use both */
 	overflow-wrap: break-word;
 	word-wrap: break-word;
 	-ms-word-break: break-all;
-	/* This is the dangerous one in WebKit, as it breaks things wherever */
 	word-break: break-all;
-	/* Instead use this non-standard one: */
 	word-break: break-word;
-	/* Adds a hyphen where the word breaks, if supported (No Blink) */
 	-ms-hyphens: auto;
 	-moz-hyphens: auto;
 	-webkit-hyphens: auto;
@@ -137,9 +132,7 @@ code {
 
 	color: inherit !important;
 }
-/* Markdown End */
 
-/* Clerk */
 .cl-internal-b3fm6y {
 	background: linear-gradient(129deg, #8c66c3 0%, #f3e9fa 100%) !important;
 }
@@ -150,13 +143,11 @@ code {
 	display: block;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
 	display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }

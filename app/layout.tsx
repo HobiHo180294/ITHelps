@@ -8,21 +8,18 @@ import { Inter, Roboto_Condensed } from 'next/font/google';
 import '../styles/prism.css';
 import './globals.css';
 
-// Налаштування шрифту Inter
 const inter = Inter({
 	subsets: ['latin', 'cyrillic'],
 	weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 	variable: '--font-inter',
 });
 
-// Налаштування шрифту Roboto Condensed
 const robotoCondensed = Roboto_Condensed({
 	subsets: ['latin', 'cyrillic'],
 	weight: ['300', '400', '500', '600', '700'],
 	variable: '--font-robotoCondensed',
 });
 
-// Визначення метаданих для сторінки
 export const metadata: Metadata = {
 	title: 'ITHelps',
 	description:
@@ -35,22 +32,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Children) {
 	return (
 		<html lang="ua">
-			{/* Визначення мови сторінки */}
 			<body className={`${inter.variable} ${robotoCondensed.variable}`}>
-				{/* Застосування шрифтів глобально */}
 				<ClerkProvider
-					localization={ukUA} // Налаштування української локалізації для платформи Clerk
+					localization={ukUA}
 					appearance={{
 						elements: {
-							formButtonPrimary: 'primary-gradient', // Класи для стилізації основної кнопки у формах
-							footerActionLink: 'primary-text-gradient hover:text-primary-500', // Класи для стилізації посилань у футері
+							formButtonPrimary: 'primary-gradient',
+							footerActionLink: 'primary-text-gradient hover:text-primary-500',
 						},
 					}}
 				>
-					<ThemeProvider>
-						{/* Обгортання майбутніх компонентів-нащадків у ThemeProvider для управління темою */}
-						{children}
-					</ThemeProvider>
+					<ThemeProvider>{children}</ThemeProvider>
 				</ClerkProvider>
 			</body>
 		</html>

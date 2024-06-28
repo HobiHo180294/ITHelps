@@ -1,6 +1,5 @@
 'use client';
 
-// Імпортування необхідних модулів
 import { Button } from '@/components/ui/button';
 import { setURLQuery } from '@/lib/utils';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -36,9 +35,7 @@ export const Pagination = (props: PaginationProps): React.JSX.Element => {
 	const queryParameters = useSearchParams();
 
 	return (
-		// Основний контейнер компонента зі стилями
 		<div className={paginationStyled.body}>
-			{/* Кнопка "Попередня" */}
 			<Button
 				disabled={props.pageNumber === 1}
 				onClick={() =>
@@ -53,11 +50,9 @@ export const Pagination = (props: PaginationProps): React.JSX.Element => {
 			>
 				<p className={paginationStyled.prevButtonText}>Попередня</p>
 			</Button>
-			{/* Відображення поточного номера сторінки */}
 			<div className={paginationStyled.center}>
 				<p className={paginationStyled.centerPageNumber}>{props.pageNumber}</p>
 			</div>
-			{/* Кнопка "Наступна" */}
 			<Button
 				disabled={!props.isNext}
 				onClick={() =>
