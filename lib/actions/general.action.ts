@@ -52,7 +52,6 @@ export async function globalSearch(params: SearchParams) {
 		} else {
 			const modelInfo = modelsAndTypes.find(item => item.type === type);
 
-			console.log({ modelInfo, type });
 			if (!modelInfo) {
 				throw new Error('Invalid search type');
 			}
@@ -78,7 +77,7 @@ export async function globalSearch(params: SearchParams) {
 
 		return JSON.stringify(results);
 	} catch (error) {
-		console.log(`Error fetching global results, ${error}`);
 		throw error;
+		return error;
 	}
 }

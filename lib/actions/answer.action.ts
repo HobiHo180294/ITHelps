@@ -37,7 +37,6 @@ export async function createAnswer(params: CreateAnswerParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -84,7 +83,6 @@ export async function getAnswers(params: GetAnswersParams) {
 
 		return { answers, isNextAnswer };
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -126,7 +124,6 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -168,7 +165,6 @@ export async function downvoteAnswer(params: AnswerVoteParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -194,6 +190,6 @@ export async function deleteAnswer(params: DeleteAnswerParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
+		return error;
 	}
 }

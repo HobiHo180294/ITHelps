@@ -71,7 +71,6 @@ export async function getQuestions(params: GetQuestionsParams) {
 
 		return { questions, isNext };
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -129,7 +128,6 @@ export async function getQuestionById(params: GetQuestionByIdParams) {
 
 		return question;
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -171,7 +169,6 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -213,7 +210,6 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }
@@ -234,7 +230,7 @@ export async function deleteQuestion(params: DeleteQuestionParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
+		return error;
 	}
 }
 
@@ -257,7 +253,7 @@ export async function editQuestion(params: EditQuestionParams) {
 
 		revalidatePath(path);
 	} catch (error) {
-		console.log(error);
+		return error;
 	}
 }
 
@@ -271,7 +267,6 @@ export async function getHotQuestions() {
 
 		return hotQuestions;
 	} catch (error) {
-		console.log(error);
 		throw error;
 	}
 }

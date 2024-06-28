@@ -58,7 +58,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 				editor.setContent('');
 			}
 		} catch (error) {
-			console.log(error);
+			return error;
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -87,7 +87,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 				editor.setContent(formattedAnswer);
 			}
 		} catch (error) {
-			console.log(error);
+			return error;
 		} finally {
 			setSetIsSubmittingAI(false);
 		}
