@@ -1,6 +1,5 @@
 import QuestionCard from '@/components/cards/QuestionCard';
-import NoResult from '@/components/shared/NoResult/NoResult';
-import Pagination from '@/components/shared/Pagination';
+import { NoResult, Pagination } from '@/components/shared';
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import { getQuestionsByTagId } from '@/lib/actions/tag.actions';
 import { URLProps } from '@/types';

@@ -1,10 +1,9 @@
+import { Filter, Pagination } from '@/components/shared';
 import { AnswerFilters } from '@/constants/filters';
 import { getAnswers } from '@/lib/actions/answer.action';
 import { getRelativeTime } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import Filter from './Filter';
-import Pagination from './Pagination';
 import ParseHTML from './ParseHTML';
 import Votes from './Votes';
 

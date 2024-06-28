@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import NoResult from './NoResult';
+import { NoResult } from './NoResult';
 import { NoResultProps } from './NoResult.interface';
 
-describe('NoResult Component', () => {
+describe('NoResult Компонент', () => {
 	const testProps: NoResultProps = {
 		title: 'Немає питань для відображення',
 		description:
@@ -12,23 +12,23 @@ describe('NoResult Component', () => {
 		linkTitle: 'Запитай',
 	};
 
-	it('renders correctly', () => {
+	it('коректно рендериться', () => {
 		render(<NoResult {...testProps} />);
 	});
 
-	it('renders title correctly', () => {
+	it('рендерить заголовок правильно', () => {
 		render(<NoResult {...testProps} />);
 		const titleElement = screen.getByText(testProps.title);
 		expect(titleElement).toBeInTheDocument();
 	});
 
-	it('renders description correctly', () => {
+	it('рендерить опис правильно', () => {
 		render(<NoResult {...testProps} />);
 		const descriptionElement = screen.getByText(testProps.description);
 		expect(descriptionElement).toBeInTheDocument();
 	});
 
-	it('renders link correctly', () => {
+	it('рендерить посилання правильно', () => {
 		render(<NoResult {...testProps} />);
 		const linkElement = screen.getByRole('link');
 		expect(linkElement).toBeInTheDocument();
