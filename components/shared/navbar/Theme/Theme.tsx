@@ -1,7 +1,6 @@
 'use client';
 
-import { useTheme } from '@/context/ThemeProvider';
-
+// Імпортування необхідних модулів
 import {
 	Menubar,
 	MenubarContent,
@@ -10,22 +9,27 @@ import {
 	MenubarTrigger,
 } from '@/components/ui/menubar';
 import { themes } from '@/constants';
+import { useTheme } from '@/context/ThemeProvider';
 import Image from 'next/image';
+import React from 'react';
+import { themeStyled } from './Theme.styles';
 
-const Theme = () => {
+const Theme = (): React.JSX.Element => {
+	// Отримання поточного режиму теми та функції для її зміни
 	const { mode, setMode } = useTheme();
 
 	return (
-		<Menubar className="relative border-none bg-transparent shadow-none">
+		<Menubar className={themeStyled.menuBar}>
 			<MenubarMenu>
-				<MenubarTrigger className="focus:bg-light-900 data-[state=open]:bg-light-900 dark:focus:bg-dark-200 dark:data-[state=open]:bg-dark-200">
+				<MenubarTrigger className={themeStyled.menuBarTrigger}>
+					{/* Умова для світлої теми, інакше буде обрана темна */}
 					{mode === 'light' ? (
 						<Image
 							src="/assets/icons/sun.svg"
 							alt="іконка світлої теми"
 							width={20}
 							height={20}
-							className="active-theme"
+							className={themeStyled.triggerImage}
 						/>
 					) : (
 						<Image
@@ -33,22 +37,20 @@ const Theme = () => {
 							alt="іконка темної теми"
 							width={20}
 							height={20}
-							className="active-theme"
+							className={themeStyled.triggerImage}
 						/>
 					)}
 				</MenubarTrigger>
-				<MenubarContent className="absolute right-[-3rem] mt-3 min-w-[120px] rounded border bg-light-900 py-2 dark:border-dark-400 dark:bg-dark-300">
+				{/* Вміст меню зі стилізацією */}
+				<MenubarContent className={themeStyled.menuBarContent}>
 					{themes.map(item => (
 						<MenubarItem
 							key={item.value}
-							className="flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400"
+							className={themeStyled.menuBarItem}
 							onClick={() => {
 								setMode(item.value);
-								if (item.value !== 'system') {
-									localStorage.theme = item.value;
-								} else {
-									localStorage.removeItem('theme');
-								}
+								if (item.value !== 'system') localStorage.theme = item.value;
+								else localStorage.removeItem('theme');
 							}}
 						>
 							<Image
@@ -56,15 +58,16 @@ const Theme = () => {
 								alt={item.value}
 								width={16}
 								height={16}
-								className={`${mode === item.value && 'active-theme'}`}
+								className={`${mode === item.value && themeStyled.triggerImage}`}
 							/>
 							<p
-								className={`body-semibold text-light-500 ${
+								className={`${themeStyled.paragraph} ${
 									mode === item.value
-										? 'text-primary-500'
-										: 'text-dark100_light900'
+										? themeStyled.lightValue
+										: themeStyled.darkValue
 								}`}
 							>
+								{/* Мітка для елементу теми */}
 								{item.label}
 							</p>
 						</MenubarItem>

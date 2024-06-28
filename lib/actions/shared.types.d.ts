@@ -62,11 +62,6 @@ export interface ViewQuestionParams {
 	userId: string | undefined;
 }
 
-export interface JobFilterParams {
-	query: string;
-	page: string;
-}
-
 export interface GetQuestionsParams {
 	page?: number;
 	pageSize?: number;

@@ -1,8 +1,6 @@
-import QuestionCard from '@/components/cards/QuestionCard';
 import HomeFilters from '@/components/Home/HomeFilters';
-import Filter from '@/components/shared/Filter';
-import NoResult from '@/components/shared/NoResult/NoResult';
-import Pagination from '@/components/shared/Pagination';
+import QuestionCard from '@/components/cards/QuestionCard';
+import { Filter, NoResult, Pagination } from '@/components/shared';
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import { Button } from '@/components/ui/button';
 import { HomePageFilters } from '@/constants/filters';
@@ -11,10 +9,9 @@ import {
 	getRecommendedQuestions,
 } from '@/lib/actions/question.action';
 import { SearchParamsProps } from '@/types';
-import Link from 'next/link';
-
 import { auth } from '@clerk/nextjs';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Домашня сторінка | ITHelps',
