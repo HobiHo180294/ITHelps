@@ -1,9 +1,8 @@
-import Link from 'next/link';
-
 import { formatNumberWithSuffix, getRelativeTime } from '@/lib/utils';
 import { SignedIn } from '@clerk/nextjs';
+import Link from 'next/link';
 import EditDeleteAction from '../shared/EditDeleteAction';
-import Metric from '../shared/Metric';
+import { Metric } from '../shared';
 
 interface Props {
 	clerkId?: string | null;

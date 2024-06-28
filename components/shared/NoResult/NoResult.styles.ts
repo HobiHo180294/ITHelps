@@ -1,3 +1,4 @@
+// Імпортування необхідних модулів
 import { Dynamic } from '@/types';
 
 type StyledKey =

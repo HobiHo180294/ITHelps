@@ -1,13 +1,10 @@
-import Filter from '@/components/shared/Filter';
-import NoResult from '@/components/shared/NoResult/NoResult';
-import Pagination from '@/components/shared/Pagination';
+import { Filter, NoResult, Pagination } from '@/components/shared';
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import { TagFilters } from '@/constants/filters';
 import { getAllTags } from '@/lib/actions/tag.actions';
 import { SearchParamsProps } from '@/types';
-import Link from 'next/link';
-
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Теги | Dev Overflow',

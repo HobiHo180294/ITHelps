@@ -1,6 +1,5 @@
 import UserCard from '@/components/cards/UserCard';
-import Filter from '@/components/shared/Filter';
-import Pagination from '@/components/shared/Pagination';
+import { Filter, Pagination } from '@/components/shared';
 import LocalSearchbar from '@/components/shared/search/LocalSearchbar';
 import { UserFilters } from '@/constants/filters';
 import { getAllUsers } from '@/lib/actions/user.action';

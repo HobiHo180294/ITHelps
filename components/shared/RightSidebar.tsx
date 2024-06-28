@@ -2,7 +2,7 @@ import { getHotQuestions } from '@/lib/actions/question.action';
 import { getTopPopularTags } from '@/lib/actions/tag.actions';
 import Image from 'next/image';
 import Link from 'next/link';
-import RenderTag from './RenderTag';
+import { RenderTag } from './RenderTag/RenderTag';
 
 const RightSidebar = async () => {
 	const hotQuestions = await getHotQuestions();

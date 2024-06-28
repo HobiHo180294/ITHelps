@@ -38,7 +38,7 @@ const MockTheme = (): React.JSX.Element => {
 	);
 };
 
-describe('Theme Component', () => {
+describe('Компонент Theme', () => {
 	beforeAll(() => {
 		Object.defineProperty(window, 'matchMedia', {
 			writable: true,
@@ -48,7 +48,7 @@ describe('Theme Component', () => {
 		});
 	});
 
-	it('should be rendered within ThemeProvider', () => {
+	it('овинен відображатися в межах ThemeProvider', () => {
 		render(
 			<ThemeProvider>
 				<Theme />
@@ -56,7 +56,7 @@ describe('Theme Component', () => {
 		);
 	});
 
-	it('should be in a light mode by default', () => {
+	it('повинен бути у світлому режимі за замовчуванням', () => {
 		const wrapper = ({ children }: Children) => (
 			<ThemeProvider>{children}</ThemeProvider>
 		);
@@ -65,7 +65,7 @@ describe('Theme Component', () => {
 		expect(result.current.mode).toBe('light');
 	});
 
-	it('should change its mode from light to dark', () => {
+	it('повинен змінювати свій режим зі світлого на темний', () => {
 		render(
 			<ThemeProvider>
 				<MockTheme />
@@ -80,7 +80,7 @@ describe('Theme Component', () => {
 		expect(resultElement.getAttribute('alt')).toBe('dark theme icon');
 	});
 
-	it('the system mode should follow user preferable mode ', () => {
+	it('истемний режим повинен відповідати бажаному режиму користувача', () => {
 		render(
 			<ThemeProvider>
 				<MockTheme />

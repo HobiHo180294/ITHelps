@@ -1,9 +1,8 @@
 import { formatNumberWithSuffix, getRelativeTime } from '@/lib/utils';
 import { SignedIn } from '@clerk/nextjs';
 import Link from 'next/link';
+import { Metric, RenderTag } from '../shared';
 import EditDeleteAction from '../shared/EditDeleteAction';
-import Metric from '../shared/Metric';
-import RenderTag from '../shared/RenderTag';
 
 interface QuestionProps {
 	_id: string;
