@@ -1,4 +1,3 @@
-// Імпортування необхідних модулей
 import { Dynamic } from '@/types';
 
 type StyledKey = 'linkBody' | 'divBody';
