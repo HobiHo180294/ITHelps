@@ -2,7 +2,12 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const Loading = () => {
 	return (
-		<section>
+		<section className="relative">
+			{/* Spinner overlay */}
+			<div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
+				<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+			</div>
+
 			<h1 className="h1-bold text-dark100_light900">Усі Користувачі</h1>
 
 			<div className="mb-12 mt-11 flex flex-wrap gap-5">
