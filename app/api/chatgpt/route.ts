@@ -11,7 +11,7 @@ export const POST = async (request: Request) => {
 				Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
 			},
 			body: JSON.stringify({
-				model: 'gpt-3.5-turbo-0125',
+				model: 'gpt-3.5-turbo',
 				messages: [
 					{
 						role: 'system',
@@ -27,6 +27,8 @@ export const POST = async (request: Request) => {
 		});
 
 		const responseData = await response.json();
+
+		console.log('responseData:', responseData);
 
 		const reply = responseData.choices[0].message.content;
 
