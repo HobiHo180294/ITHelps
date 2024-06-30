@@ -1,5 +1,3 @@
-// Імпортування необхідних модулів
-import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -7,13 +5,11 @@ import { Mock, vi } from 'vitest';
 import { Filter } from './Filter';
 import { FilterProps } from './Filter.interface';
 
-// Імітація хуків useRouter і useSearchParams
 vi.mock('next/navigation', () => ({
 	useRouter: vi.fn(),
 	useSearchParams: vi.fn(),
 }));
 
-// Імітація даних для тестових сценаріїв
 const mockFilters = [
 	{ value: 'all', name: 'Всі' },
 	{ value: 'active', name: 'Активні' },

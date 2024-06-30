@@ -1,4 +1,3 @@
-// Імпортування необхідних модулів
 import { ThemeProvider } from '@/context/ThemeProvider';
 import { Children } from '@/types';
 import { ukUA } from '@clerk/localizations';
