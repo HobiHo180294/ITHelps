@@ -1,4 +1,3 @@
-// Pagination.test.tsx
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -6,7 +5,6 @@ import { Mock, vi } from 'vitest';
 import { Pagination } from './Pagination';
 import { PaginationProps } from './Pagination.interface';
 
-// Імітація хуків useRouter і useSearchParams
 vi.mock('next/navigation', () => ({
 	useRouter: vi.fn(),
 	useSearchParams: vi.fn(),

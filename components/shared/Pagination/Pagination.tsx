@@ -11,7 +11,6 @@ import {
 import { PaginationProps } from './Pagination.interface';
 import { paginationStyled } from './Pagination.styles';
 
-// Функція для обробки навігації між сторінками
 const navigateHandler = (
 	pageNumber: PaginationProps['pageNumber'],
 	queryParameters: ReadonlyURLSearchParams,

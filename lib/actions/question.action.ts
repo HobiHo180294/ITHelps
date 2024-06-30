@@ -333,7 +333,6 @@ export async function getRecommendedQuestions(params: RecommendedParams) {
 
 		return { questions: recommendedQuestions, isNext };
 	} catch (error) {
-		console.error('Error getting recommended questions:', error);
 		throw error;
 	}
 }

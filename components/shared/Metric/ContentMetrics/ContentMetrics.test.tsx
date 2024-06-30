@@ -1,4 +1,3 @@
-// Імпортування необхідних модулей
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MetricProps } from '../Metric.interface';

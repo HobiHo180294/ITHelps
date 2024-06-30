@@ -31,7 +31,6 @@ const GlobalResult = () => {
 
 				setResult(JSON.parse(res));
 			} catch (error) {
-				console.error(error);
 				throw error;
 			} finally {
 				setIsLoading(false);

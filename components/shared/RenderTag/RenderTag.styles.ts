@@ -1,4 +1,3 @@
-// Імпортування необхідних модулів
 import { Dynamic } from '@/types';
 
 type StyledKey = 'link' | 'nameBadge' | 'showCountParagraph';
