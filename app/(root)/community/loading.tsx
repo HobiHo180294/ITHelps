@@ -4,7 +4,13 @@ const Loading = () => {
 	return (
 		<section className="relative">
 			{/* Spinner overlay */}
-			<div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
+			{/* <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
+				<div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary sm:h-24 sm:w-24 md:h-32 md:w-32">
+					<span className="sr-only">Loading...</span>
+				</div>
+			</div> */}
+
+			<div className="absolute inset-0 flex items-start justify-center bg-background/50 z-10 pt-20 sm:pt-32">
 				<div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary sm:h-24 sm:w-24 md:h-32 md:w-32">
 					<span className="sr-only">Loading...</span>
 				</div>
