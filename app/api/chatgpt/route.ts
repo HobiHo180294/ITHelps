@@ -11,22 +11,24 @@ export const POST = async (request: Request) => {
 				Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
 			},
 			body: JSON.stringify({
-				model: 'gpt-3.5-turbo',
+				model: 'gpt-3.5-turbo-0125',
 				messages: [
 					{
 						role: 'system',
 						content:
-							'You are a knowlegeable assistant that provides quality information.',
+							'Ти обізнаний помічник, який надає якісну інформацію у сфері IT-технологій.',
 					},
 					{
 						role: 'user',
-						content: `Tell me ${question}`,
+						content: `Надай відповідь будь ласка на наступне запитання: ${question}`,
 					},
 				],
 			}),
 		});
 
 		const responseData = await response.json();
+
+		console.log('data:', responseData);
 
 		const reply = responseData.choices[0].message.content;
 
