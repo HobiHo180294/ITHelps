@@ -5,7 +5,9 @@ const Loading = () => {
 		<section className="relative">
 			{/* Spinner overlay */}
 			<div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
-				<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary"></div>
+				<div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary sm:h-24 sm:w-24 md:h-32 md:w-32">
+					<span className="sr-only">Loading...</span>
+				</div>
 			</div>
 
 			<h1 className="h1-bold text-dark100_light900">Усі Користувачі</h1>
