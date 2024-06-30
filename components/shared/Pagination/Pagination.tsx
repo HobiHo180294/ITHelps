@@ -2,66 +2,44 @@
 
 import { Button } from '@/components/ui/button';
 import { setURLQuery } from '@/lib/utils';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import {
-	ReadonlyURLSearchParams,
-	useRouter,
-	useSearchParams,
-} from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PaginationProps } from './Pagination.interface';
 import { paginationStyled } from './Pagination.styles';
 
-const navigateHandler = (
-	pageNumber: PaginationProps['pageNumber'],
-	queryParameters: ReadonlyURLSearchParams,
-	routeHandler: AppRouterInstance,
-	route: string
-): void => {
-	const followingPageNumber =
-		route === 'prev' ? pageNumber - 1 : pageNumber + 1;
+export const Pagination = ({ pageNumber, isNext }: PaginationProps) => {
+	const router = useRouter();
+	const searchParams = useSearchParams();
 
-	const refreshedUrl = setURLQuery({
-		parameters: queryParameters.toString(),
-		property: 'page',
-		data: followingPageNumber.toString(),
-	});
+	const handleNavigation = (direction: string) => {
+		const nextPageNumber =
+			direction === 'prev' ? pageNumber - 1 : pageNumber + 1;
 
-	routeHandler.push(refreshedUrl);
-};
+		const newUrl = setURLQuery({
+			parameters: searchParams.toString(),
+			property: 'page',
+			data: nextPageNumber.toString(),
+		});
 
-export const Pagination = (props: PaginationProps): React.JSX.Element => {
-	const routeHandler = useRouter();
-	const queryParameters = useSearchParams();
+		router.push(newUrl);
+	};
+
+	if (!isNext && pageNumber === 1) return null;
 
 	return (
 		<div className={paginationStyled.body}>
 			<Button
-				disabled={props.pageNumber === 1}
-				onClick={() =>
-					navigateHandler(
-						props.pageNumber,
-						queryParameters,
-						routeHandler,
-						'prev'
-					)
-				}
+				disabled={pageNumber === 1}
+				onClick={() => handleNavigation('prev')}
 				className={paginationStyled.prevButton}
 			>
 				<p className={paginationStyled.prevButtonText}>Попередня</p>
 			</Button>
 			<div className={paginationStyled.center}>
-				<p className={paginationStyled.centerPageNumber}>{props.pageNumber}</p>
+				<p className={paginationStyled.centerPageNumber}>{pageNumber}</p>
 			</div>
 			<Button
-				disabled={!props.isNext}
-				onClick={() =>
-					navigateHandler(
-						props.pageNumber,
-						queryParameters,
-						routeHandler,
-						'next'
-					)
-				}
+				disabled={!isNext}
+				onClick={() => handleNavigation('next')}
 				className={paginationStyled.nextButton}
 			>
 				<p className={paginationStyled.nextButtonText}>Наступна</p>
